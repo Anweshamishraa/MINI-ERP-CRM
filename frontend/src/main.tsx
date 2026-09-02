@@ -2,7 +2,9 @@ import React,{createContext,useContext,useEffect,useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {BrowserRouter,Routes,Route,Navigate,Link,useNavigate} from 'react-router-dom';
 import axios from 'axios'; import './style.css';
-const api=axios.create({baseURL:import.meta.env.VITE_API_URL||'http://localhost:5000/api'});
+const api=axios.create({
+  baseURL:'https://mini-erp-crm-y8oi.onrender.com'
+});
 type User={id:string;name:string;email:string;role:string}; type Auth={user:User|null;login:(e:string,p:string)=>Promise<void>;logout:()=>void};
 const C=createContext<Auth>(null!); const useAuth=()=>useContext(C);
 function AuthProvider({children}:{children:React.ReactNode}){const [user,setUser]=useState<User|null>(JSON.parse(localStorage.getItem('user')||'null'));
